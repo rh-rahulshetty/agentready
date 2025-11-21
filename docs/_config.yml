@@ -10,8 +10,8 @@ description: >-
   evidence-based attributes with actionable remediation guidance.
 
 # Repository information
-repository: yourusername/agentready
-github_username: yourusername
+repository: ambient-code/agentready
+github_username: ambient-code
 
 # Build settings
 theme: jekyll-theme-minimal

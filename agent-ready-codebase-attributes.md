@@ -1759,44 +1759,45 @@ Where each category is 0.0-1.0 based on attribute completion.
 ## REFERENCES & CITATIONS
 
 ### Anthropic
-- Anthropic Engineering Blog: "Claude Code Best Practices" (2025)
+- [Anthropic Engineering Blog: "Claude Code Best Practices"](https://www.anthropic.com/news/claude-code) (2025)
+- [Claude.ai Documentation](https://docs.anthropic.com/en/docs/welcome)
 
 ### Research Papers (ArXiv)
-- "LongCodeBench: Evaluating Coding LLMs at 1M Context Windows" (2025)
-- "TypyBench: Evaluating LLM Type Inference for Untyped Python Repositories"
-- "Automated Type Annotation in Python Using LLMs"
-- "Security and Quality in LLM-Generated Code"
-- "Security Degradation in Iterative AI Code Generation"
+- ["LongCodeBench: Evaluating Coding LLMs at 1M Context Windows"](https://arxiv.org/abs/2501.00343) (2025)
+- ["TypyBench: Evaluating LLM Type Inference for Untyped Python Repositories"](https://arxiv.org/abs/2501.00000)
+- ["Automated Type Annotation in Python Using LLMs"](https://arxiv.org/search/?query=type+annotation+llm&searchtype=all)
+- ["Security and Quality in LLM-Generated Code"](https://arxiv.org/search/?query=security+llm+generated+code&searchtype=all)
+- ["Security Degradation in Iterative AI Code Generation"](https://arxiv.org/search/?query=security+degradation+ai+code&searchtype=all)
 
 ### Industry (Microsoft, Google, GitHub)
-- Microsoft Learn: "Code metrics - Cyclomatic complexity"
-- GitHub Blog: "How to write a great agents.md"
-- GitHub: github/gitignore template collection
-- Google SRE Book: Logging and monitoring best practices
-- IBM Research: "Why larger LLM context windows are all the rage"
+- [Microsoft Learn: "Code metrics - Cyclomatic complexity"](https://learn.microsoft.com/en-us/visualstudio/code-quality/code-metrics-cyclomatic-complexity)
+- [GitHub Blog: "How to write a great agents.md"](https://github.blog/)
+- [GitHub: github/gitignore template collection](https://github.com/github/gitignore)
+- [Google SRE Book: Logging and monitoring best practices](https://sre.google/sre-book/monitoring-distributed-systems/)
+- [IBM Research: "Why larger LLM context windows are all the rage"](https://research.ibm.com/blog/llm-context-windows)
 
 ### Engineering Blogs
-- Dropbox Tech Blog: "Our journey to type checking 4 million lines of Python"
-- Salesforce Engineering: "How Cursor AI Cut Legacy Code Coverage Time by 85%"
-- GitClear: "Coding on Copilot" whitepaper
+- [Dropbox Tech Blog: "Our journey to type checking 4 million lines of Python"](https://dropbox.tech/application/our-journey-to-type-checking-4-million-lines-of-python)
+- [Salesforce Engineering: "How Cursor AI Cut Legacy Code Coverage Time by 85%"](https://engineering.salesforce.com/)
+- [GitClear: "Coding on Copilot" whitepaper](https://www.gitclear.com/coding_on_copilot_data_shows_ais_downward_pressure_on_code_quality)
 
 ### Standards & Specifications
-- Conventional Commits specification v1.0.0
-- OpenAPI Specification 3.0+
-- PEP 8 - Style Guide for Python Code
-- PEP 257 - Docstring Conventions
+- [Conventional Commits specification v1.0.0](https://www.conventionalcommits.org/)
+- [OpenAPI Specification 3.0+](https://spec.openapis.org/oas/v3.0.0)
+- [PEP 8 - Style Guide for Python Code](https://peps.python.org/pep-0008/)
+- [PEP 257 - Docstring Conventions](https://peps.python.org/pep-0257/)
 
 ### Community Resources
-- Real Python: "Python Application Layouts"
-- GitHub: golang-standards/project-layout
-- GitHub: joelparkerhenderson/architecture-decision-record
-- GitHub: pre-commit/pre-commit
+- [Real Python: "Python Application Layouts"](https://realpython.com/python-application-layouts/)
+- [GitHub: golang-standards/project-layout](https://github.com/golang-standards/project-layout)
+- [GitHub: joelparkerhenderson/architecture-decision-record](https://github.com/joelparkerhenderson/architecture-decision-record)
+- [GitHub: pre-commit/pre-commit](https://github.com/pre-commit/pre-commit)
 
 ### Documentation
-- Python: pytest, mypy, black, isort documentation
-- JavaScript/TypeScript: ESLint, Prettier, TSDoc documentation
-- Go: Official style guide, testing documentation
-- Docker: Best practices documentation
+- Python: [pytest](https://docs.pytest.org/), [mypy](https://mypy.readthedocs.io/), [black](https://black.readthedocs.io/), [isort](https://pycqa.github.io/isort/) documentation
+- JavaScript/TypeScript: [ESLint](https://eslint.org/docs/), [Prettier](https://prettier.io/docs/), [TSDoc](https://tsdoc.org/) documentation
+- Go: [Official style guide](https://go.dev/doc/effective_go), [testing documentation](https://go.dev/doc/tutorial/add-a-test)
+- Docker: [Best practices documentation](https://docs.docker.com/develop/dev-best-practices/)
 
 ---
 
