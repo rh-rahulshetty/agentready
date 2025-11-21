@@ -1,0 +1,267 @@
+"""CLI entry point for agentready tool."""
+
+import json
+import sys
+from pathlib import Path
+
+import click
+
+from ..assessors.code_quality import (
+    CyclomaticComplexityAssessor,
+    TypeAnnotationsAssessor,
+)
+
+# Import all assessors
+from ..assessors.documentation import CLAUDEmdAssessor, READMEAssessor
+from ..assessors.structure import StandardLayoutAssessor
+from ..assessors.stub_assessors import (
+    ConventionalCommitsAssessor,
+    GitignoreAssessor,
+    LockFilesAssessor,
+    create_stub_assessors,
+)
+from ..assessors.testing import PreCommitHooksAssessor, TestCoverageAssessor
+from ..models.config import Config
+from ..services.research_loader import ResearchLoader
+from ..services.scanner import Scanner
+
+
+def create_all_assessors():
+    """Create all 25 assessors for assessment."""
+    assessors = [
+        # Tier 1 Essential (5 assessors)
+        CLAUDEmdAssessor(),
+        READMEAssessor(),
+        TypeAnnotationsAssessor(),
+        StandardLayoutAssessor(),
+        LockFilesAssessor(),
+        # Tier 2 Critical (10 assessors - 3 implemented, 7 stubs)
+        TestCoverageAssessor(),
+        PreCommitHooksAssessor(),
+        ConventionalCommitsAssessor(),
+        GitignoreAssessor(),
+        CyclomaticComplexityAssessor(),  # Actually Tier 3, but including here
+    ]
+
+    # Add remaining stub assessors
+    assessors.extend(create_stub_assessors())
+
+    return assessors
+
+
+@click.group(invoke_without_command=True)
+@click.option("--version", is_flag=True, help="Show version information")
+@click.pass_context
+def cli(ctx, version):
+    """AgentReady Repository Scorer - Assess repositories for AI-assisted development.
+
+    Evaluates repositories against 25 evidence-based attributes and generates
+    comprehensive reports with scores, findings, and remediation guidance.
+
+    Examples:
+
+        \b
+        # Assess current repository
+        agentready assess .
+
+        \b
+        # Assess with custom configuration
+        agentready assess /path/to/repo --config my-config.yaml
+
+        \b
+        # Show research version
+        agentready research-version
+
+        \b
+        # Generate example config
+        agentready generate-config
+    """
+    if version:
+        show_version()
+        ctx.exit()
+
+    if ctx.invoked_subcommand is None:
+        click.echo(ctx.get_help())
+
+
+@cli.command()
+@click.argument("repository", type=click.Path(exists=True), required=False, default=".")
+@click.option("--verbose", "-v", is_flag=True, help="Enable verbose output")
+@click.option(
+    "--output-dir",
+    "-o",
+    type=click.Path(),
+    default=None,
+    help="Output directory for reports (default: .agentready/)",
+)
+@click.option(
+    "--config",
+    "-c",
+    type=click.Path(exists=True),
+    default=None,
+    help="Path to configuration file",
+)
+def assess(repository, verbose, output_dir, config):
+    """Assess a repository against agent-ready criteria.
+
+    REPOSITORY: Path to git repository (default: current directory)
+    """
+    run_assessment(repository, verbose, output_dir, config)
+
+
+def run_assessment(repository_path, verbose, output_dir, config_path):
+    """Execute repository assessment."""
+    repo_path = Path(repository_path).resolve()
+
+    if verbose:
+        click.echo(f"AgentReady Repository Scorer")
+        click.echo(f"{'=' * 50}\n")
+
+    # Load configuration if provided
+    config = None
+    if config_path:
+        config = load_config(Path(config_path))
+
+    # Set output directory
+    if output_dir:
+        output_path = Path(output_dir)
+    else:
+        output_path = repo_path / ".agentready"
+
+    output_path.mkdir(parents=True, exist_ok=True)
+
+    # Create scanner
+    try:
+        scanner = Scanner(repo_path, config)
+    except ValueError as e:
+        click.echo(f"Error: {str(e)}", err=True)
+        sys.exit(1)
+
+    # Create assessors
+    assessors = create_all_assessors()
+
+    if verbose:
+        click.echo(f"Repository: {repo_path}")
+        click.echo(f"Assessors: {len(assessors)}")
+        click.echo(f"Output: {output_path}\n")
+
+    # Run scan
+    try:
+        assessment = scanner.scan(assessors, verbose=verbose)
+    except Exception as e:
+        click.echo(f"Error during assessment: {str(e)}", err=True)
+        if verbose:
+            import traceback
+
+            traceback.print_exc()
+        sys.exit(1)
+
+    # Save JSON output
+    json_file = (
+        output_path
+        / f"assessment-{assessment.timestamp.strftime('%Y%m%d-%H%M%S')}.json"
+    )
+    with open(json_file, "w", encoding="utf-8") as f:
+        json.dump(assessment.to_dict(), f, indent=2)
+
+    # Create latest symlink
+    latest_json = output_path / "assessment-latest.json"
+    if latest_json.exists():
+        latest_json.unlink()
+    try:
+        latest_json.symlink_to(json_file.name)
+    except OSError:
+        # Windows doesn't support symlinks easily, just copy
+        import shutil
+
+        shutil.copy(json_file, latest_json)
+
+    if verbose:
+        click.echo(f"\n{'=' * 50}")
+
+    click.echo(f"\nAssessment complete!")
+    click.echo(
+        f"  Score: {assessment.overall_score:.1f}/100 ({assessment.certification_level})"
+    )
+    click.echo(
+        f"  Assessed: {assessment.attributes_assessed}/{assessment.attributes_total}"
+    )
+    click.echo(f"  Skipped: {assessment.attributes_skipped}")
+    click.echo(f"  Duration: {assessment.duration_seconds:.1f}s")
+    click.echo(f"\nReports generated:")
+    click.echo(f"  JSON: {json_file}")
+
+
+def load_config(config_path: Path) -> Config:
+    """Load configuration from YAML file."""
+    import yaml
+
+    with open(config_path, "r", encoding="utf-8") as f:
+        data = yaml.safe_load(f)
+
+    return Config(
+        weights=data.get("weights", {}),
+        excluded_attributes=data.get("excluded_attributes", []),
+        language_overrides=data.get("language_overrides", {}),
+        output_dir=Path(data["output_dir"]) if "output_dir" in data else None,
+    )
+
+
+@cli.command()
+def research_version():
+    """Show bundled research report version."""
+    loader = ResearchLoader()
+    try:
+        content, metadata, is_valid, errors, warnings = loader.load_and_validate()
+
+        click.echo(f"Research Report Version: {metadata.version}")
+        click.echo(f"Date: {metadata.date}")
+        click.echo(f"Attributes: {metadata.attribute_count}")
+        click.echo(f"References: {metadata.reference_count}")
+        click.echo(f"\nValidation: {'✓ PASS' if is_valid else '✗ FAIL'}")
+
+        if errors:
+            click.echo("\nErrors:")
+            for error in errors:
+                click.echo(f"  - {error}")
+
+        if warnings:
+            click.echo("\nWarnings:")
+            for warning in warnings:
+                click.echo(f"  - {warning}")
+
+    except FileNotFoundError as e:
+        click.echo(f"Error: {str(e)}", err=True)
+        sys.exit(1)
+
+
+@cli.command()
+def generate_config():
+    """Generate example configuration file."""
+    example_path = Path(".agentready-config.example.yaml")
+
+    if not example_path.exists():
+        click.echo("Error: .agentready-config.example.yaml not found", err=True)
+        sys.exit(1)
+
+    target = Path(".agentready-config.yaml")
+
+    if target.exists():
+        if not click.confirm(f"{target} already exists. Overwrite?"):
+            return
+
+    import shutil
+
+    shutil.copy(example_path, target)
+    click.echo(f"Created {target}")
+    click.echo("Edit this file to customize weights and behavior.")
+
+
+def show_version():
+    """Show version information."""
+    click.echo("AgentReady Repository Scorer v1.0.0")
+    click.echo("Research Report: bundled")
+
+
+if __name__ == "__main__":
+    cli()
