@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/ambient-code/agentready/compare/v1.0.2...v1.0.3) (2025-11-21)
+
+
+### Bug Fixes
+
+* exclude DEPLOYMENT.md and SETUP_SUMMARY.md from Jekyll build ([9611207](https://github.com/ambient-code/agentready/commit/9611207153ce9c323f8f1952ba18e9f523dedf7d))
+
 ## [1.0.2](https://github.com/ambient-code/agentready/compare/v1.0.1...v1.0.2) (2025-11-21)
 
 
