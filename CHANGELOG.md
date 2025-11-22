@@ -1,3 +1,10 @@
+## [1.12.1](https://github.com/ambient-code/agentready/compare/v1.12.0...v1.12.1) (2025-11-22)
+
+
+### Bug Fixes
+
+* Resolve merge conflicts in CLI main module ([#59](https://github.com/ambient-code/agentready/issues/59)) ([9e0bf2d](https://github.com/ambient-code/agentready/commit/9e0bf2d4e5671bf7d195c3069aee56013a0383a2))
+
 # [1.12.0](https://github.com/ambient-code/agentready/compare/v1.11.0...v1.12.0) (2025-11-22)
 
 
