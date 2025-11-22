@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/ambient-code/agentready/compare/v1.8.0...v1.9.0) (2025-11-22)
+
+
+### Features
+
+* add agentready-dev Claude agent specification ([#44](https://github.com/ambient-code/agentready/issues/44)) ([0f61f5c](https://github.com/ambient-code/agentready/commit/0f61f5cc1b1fb56e51ac26d374310f07216183b3))
+
 # [1.8.0](https://github.com/ambient-code/agentready/compare/v1.7.1...v1.8.0) (2025-11-22)
 
 
