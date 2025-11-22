@@ -1,3 +1,15 @@
+## [1.12.2](https://github.com/ambient-code/agentready/compare/v1.12.1...v1.12.2) (2025-11-22)
+
+
+### Bug Fixes
+
+* Add comprehensive YAML validation to prevent attacks (fixes [#56](https://github.com/ambient-code/agentready/issues/56)) ([#63](https://github.com/ambient-code/agentready/issues/63)) ([31ecb3a](https://github.com/ambient-code/agentready/commit/31ecb3ad7993241d3da95ab89e9e72fd6b6fe854))
+* Correct datetime import pattern in RepomixService ([#65](https://github.com/ambient-code/agentready/issues/65)) ([517aa6e](https://github.com/ambient-code/agentready/commit/517aa6e84b4e46e63f79f0e6dadce7bf0cd299a3))
+* Prevent API key exposure in environment and logs (fixes [#55](https://github.com/ambient-code/agentready/issues/55)) ([#64](https://github.com/ambient-code/agentready/issues/64)) ([4d1d001](https://github.com/ambient-code/agentready/commit/4d1d001ffcff387aeeb1ac94e01c8f9262db8825))
+* Prevent command injection in CommandFix.apply() (fixes [#52](https://github.com/ambient-code/agentready/issues/52)) ([#60](https://github.com/ambient-code/agentready/issues/60)) ([49be28e](https://github.com/ambient-code/agentready/commit/49be28e6024c44e997312cf8ada279da37d2c74e))
+* Prevent path traversal in LLM cache (fixes [#53](https://github.com/ambient-code/agentready/issues/53)) ([#61](https://github.com/ambient-code/agentready/issues/61)) ([2bf052d](https://github.com/ambient-code/agentready/commit/2bf052dda4234748fba49a91f2d2557e4618792d))
+* Prevent XSS in HTML reports (fixes [#54](https://github.com/ambient-code/agentready/issues/54)) ([#62](https://github.com/ambient-code/agentready/issues/62)) ([7c60c69](https://github.com/ambient-code/agentready/commit/7c60c696176b818de0e3569e4316b1ddc2664072))
+
 ## [1.12.1](https://github.com/ambient-code/agentready/compare/v1.12.0...v1.12.1) (2025-11-22)
 
 
