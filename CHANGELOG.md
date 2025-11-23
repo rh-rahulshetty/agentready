@@ -1,3 +1,10 @@
+# [1.20.0](https://github.com/ambient-code/agentready/compare/v1.19.0...v1.20.0) (2025-11-23)
+
+
+### Features
+
+* Implement SemanticNamingAssessor (fixes [#82](https://github.com/ambient-code/agentready/issues/82)) ([#95](https://github.com/ambient-code/agentready/issues/95)) ([d87a280](https://github.com/ambient-code/agentready/commit/d87a28035762e9247b47297ee2092e14ef533462))
+
 # [1.19.0](https://github.com/ambient-code/agentready/compare/v1.18.0...v1.19.0) (2025-11-23)
 
 
