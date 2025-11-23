@@ -1,3 +1,10 @@
+# [1.15.0](https://github.com/ambient-code/agentready/compare/v1.14.0...v1.15.0) (2025-11-23)
+
+
+### Features
+
+* Implement IssuePRTemplatesAssessor (fixes [#84](https://github.com/ambient-code/agentready/issues/84)) ([#90](https://github.com/ambient-code/agentready/issues/90)) ([819d7b7](https://github.com/ambient-code/agentready/commit/819d7b7c336030d7809307a624a1913c57469d5f))
+
 # [1.14.0](https://github.com/ambient-code/agentready/compare/v1.13.0...v1.14.0) (2025-11-22)
 
 
