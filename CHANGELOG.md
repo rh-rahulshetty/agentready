@@ -1,3 +1,10 @@
+## [2.7.1](https://github.com/ambient-code/agentready/compare/v2.7.0...v2.7.1) (2025-11-24)
+
+
+### Bug Fixes
+
+* **assessors:** search recursively for OpenAPI specification files ([#127](https://github.com/ambient-code/agentready/issues/127)) ([e2a5778](https://github.com/ambient-code/agentready/commit/e2a5778640b696f2918fdbe48e17966037e23a58))
+
 # [2.7.0](https://github.com/ambient-code/agentready/compare/v2.6.0...v2.7.0) (2025-11-24)
 
 
