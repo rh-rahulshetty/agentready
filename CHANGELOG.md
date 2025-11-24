@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/ambient-code/agentready/compare/v2.1.0...v2.2.0) (2025-11-24)
+
+
+### Features
+
+* Phase 1 Tasks 2-3 - Consolidate Reporter Base & Assessor Factory ([#131](https://github.com/ambient-code/agentready/issues/131)) ([8e12bf9](https://github.com/ambient-code/agentready/commit/8e12bf9d6f80d7a877e65900cdf9edb045fe5378)), closes [#122](https://github.com/ambient-code/agentready/issues/122) [#122](https://github.com/ambient-code/agentready/issues/122) [#122](https://github.com/ambient-code/agentready/issues/122) [#122](https://github.com/ambient-code/agentready/issues/122) [#122](https://github.com/ambient-code/agentready/issues/122) [#122](https://github.com/ambient-code/agentready/issues/122) [#122](https://github.com/ambient-code/agentready/issues/122) [#122](https://github.com/ambient-code/agentready/issues/122)
+
 # [2.1.0](https://github.com/ambient-code/agentready/compare/v2.0.0...v2.1.0) (2025-11-24)
 
 
