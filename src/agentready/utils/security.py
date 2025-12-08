@@ -59,7 +59,7 @@ def validate_path(
     if must_exist and not resolved_path.exists():
         raise ValueError(f"Path does not exist: {resolved_path}")
 
-    # Check if path is within base directory (if specified)
+    # Check base_dir constraint FIRST (takes precedence over sensitive dirs)
     if base_dir is not None:
         base_resolved = Path(base_dir).resolve()
         try:
@@ -68,10 +68,22 @@ def validate_path(
             raise ValueError(
                 f"Path traversal detected: {resolved_path} is outside {base_resolved}"
             )
+        # If base_dir check passed, path is explicitly allowed - skip sensitive dir check
+        return resolved_path
 
     # Block sensitive system directories (unless explicitly allowed)
     if not allow_system_dirs:
-        sensitive_dirs = ["/etc", "/sys", "/proc", "/var", "/usr", "/bin", "/sbin"]
+        sensitive_dirs = [
+            "/etc",
+            "/sys",
+            "/proc",
+            "/var",
+            "/usr",
+            "/bin",
+            "/sbin",
+            "/private/etc",  # macOS
+            "/private/var",  # macOS
+        ]
         if any(str(resolved_path).startswith(p) for p in sensitive_dirs):
             raise ValueError(
                 f"Cannot be in sensitive system directory: {resolved_path}"

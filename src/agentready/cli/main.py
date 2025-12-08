@@ -12,7 +12,6 @@ except ImportError:
     # Python 3.7 compatibility
     from importlib_metadata import version as get_version
 
-from pydantic import ValidationError
 
 from ..assessors import create_all_assessors
 from ..models.config import Config
@@ -162,7 +161,11 @@ def assess(repository, verbose, output_dir, config, exclude):
 
 def run_assessment(repository_path, verbose, output_dir, config_path, exclude=None):
     """Execute repository assessment."""
-    repo_path = Path(repository_path).resolve()
+    try:
+        repo_path = Path(repository_path).resolve()
+    except (OSError, PermissionError):
+        # If resolve fails (e.g., permission denied), use absolute path
+        repo_path = Path(repository_path).absolute()
 
     # Security: Warn when scanning sensitive directories
     sensitive_dirs = ["/etc", "/sys", "/proc", "/.ssh", "/var"]
@@ -339,24 +342,11 @@ def load_config(config_path: Path) -> Config:
     """
     import yaml
 
-    try:
-        with open(config_path, "r", encoding="utf-8") as f:
-            data = yaml.safe_load(f)
+    with open(config_path, "r", encoding="utf-8") as f:
+        data = yaml.safe_load(f)
 
-        # Pydantic handles all validation automatically
-        return Config.from_yaml_dict(data)
-    except ValidationError as e:
-        # Convert Pydantic validation errors to user-friendly messages
-        errors = []
-        for error in e.errors():
-            field = " → ".join(str(x) for x in error["loc"])
-            msg = error["msg"]
-            errors.append(f"  - {field}: {msg}")
-
-        click.echo("Configuration validation failed:", err=True)
-        for error in errors:
-            click.echo(error, err=True)
-        sys.exit(1)
+    # Config.from_yaml_dict handles all validation and raises ValueError on errors
+    return Config.from_yaml_dict(data)
 
 
 @cli.command()
