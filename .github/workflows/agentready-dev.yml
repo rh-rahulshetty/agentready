@@ -199,35 +199,56 @@ jobs:
 
             Important: Make sure to post your response as a comment and clearly indicate you are responding as the @agentready-dev agent.
 
+      - name: Debug event context
+        if: always()
+        run: |
+          echo "Event name: ${{ github.event_name }}"
+          echo "Issue number from step: ${{ steps.event-context.outputs.issue_number }}"
+          echo "Is PR: ${{ steps.event-context.outputs.is_pr }}"
+          echo "PR number: ${{ steps.event-context.outputs.pr_number }}"
+          echo "GitHub context issue: ${{ github.event.issue.number }}"
+          echo "GitHub context issue (alt): ${{ github.event.issue.number || 'not set' }}"
+
       - name: Post @agentready-dev response
         if: always()
         uses: actions/github-script@v8
         env:
           ISSUE_NUMBER: ${{ steps.event-context.outputs.issue_number }}
+          EVENT_NAME: ${{ github.event_name }}
         with:
           script: |
             const issueNumber = process.env.ISSUE_NUMBER;
+            const eventName = process.env.EVENT_NAME;
             console.log('ISSUE_NUMBER from env:', issueNumber);
-            console.log('Event name:', context.eventName);
-            console.log('Context payload:', JSON.stringify(context.payload, null, 2));
+            console.log('EVENT_NAME from env:', eventName);
+            console.log('Event name from context:', context.eventName);
+            console.log('Context payload keys:', Object.keys(context.payload || {}));
 
             // Get the issue/PR number from context
+            // For issue_comment events, context.issue.number is the most reliable
             let targetNumber = issueNumber;
 
             // Try multiple fallback methods
-            if (!targetNumber || targetNumber === '') {
+            if (!targetNumber || targetNumber === '' || targetNumber === 'undefined') {
               console.log('Trying fallback methods...');
-              if (context.payload.issue && context.payload.issue.number) {
-                targetNumber = context.payload.issue.number;
-                console.log('Found from context.payload.issue.number:', targetNumber);
-              } else if (context.payload.pull_request && context.payload.pull_request.number) {
-                targetNumber = context.payload.pull_request.number;
-                console.log('Found from context.payload.pull_request.number:', targetNumber);
-              } else if (context.issue && context.issue.number) {
+
+              // Method 1: context.issue.number (most reliable for issue_comment events)
+              if (context.issue && context.issue.number) {
                 targetNumber = context.issue.number;
                 console.log('Found from context.issue.number:', targetNumber);
-              } else if (context.payload.comment && context.payload.comment.issue_url) {
-                // Extract issue number from comment URL
+              }
+              // Method 2: context.payload.issue.number
+              else if (context.payload && context.payload.issue && context.payload.issue.number) {
+                targetNumber = context.payload.issue.number;
+                console.log('Found from context.payload.issue.number:', targetNumber);
+              }
+              // Method 3: context.payload.pull_request.number (for PR comments)
+              else if (context.payload && context.payload.pull_request && context.payload.pull_request.number) {
+                targetNumber = context.payload.pull_request.number;
+                console.log('Found from context.payload.pull_request.number:', targetNumber);
+              }
+              // Method 4: Extract from comment issue_url
+              else if (context.payload && context.payload.comment && context.payload.comment.issue_url) {
                 const urlParts = context.payload.comment.issue_url.split('/');
                 targetNumber = urlParts[urlParts.length - 1];
                 console.log('Found from comment.issue_url:', targetNumber);
