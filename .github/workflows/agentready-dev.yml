@@ -200,7 +200,6 @@ jobs:
             Important: Make sure to post your response as a comment and clearly indicate you are responding as the @agentready-dev agent.
 
       - name: Debug event context
-        if: always()
         run: |
           echo "Event name: ${{ github.event_name }}"
           echo "Issue number from step: ${{ steps.event-context.outputs.issue_number }}"
@@ -210,7 +209,6 @@ jobs:
           echo "GitHub context issue (alt): ${{ github.event.issue.number || 'not set' }}"
 
       - name: Post @agentready-dev response
-        if: always()
         uses: actions/github-script@v8
         env:
           ISSUE_NUMBER: ${{ steps.event-context.outputs.issue_number }}
