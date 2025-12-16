@@ -123,6 +123,10 @@ jobs:
           LOG_FILE=".github/agentready-dev-logs/activity-$(date +%Y%m%d-%H%M%S)-${{ github.run_id }}.jsonl"
           echo "log_file=$LOG_FILE" >> $GITHUB_OUTPUT
           echo "{\"timestamp\":\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\",\"event\":\"workflow_started\",\"run_id\":\"${{ github.run_id }}\",\"event_name\":\"${{ github.event_name }}\"}" >> "$LOG_FILE"
+          
+          # Ensure analysis files directory exists and is writable
+          mkdir -p .github/agentready-dev-logs
+          touch .github/agentready-dev-logs/.gitkeep
 
       - name: Log context
         if: steps.issue-context.outputs.skip_pr_creation != 'true' || steps.issue-context.outputs.is_comment_trigger == 'true'
