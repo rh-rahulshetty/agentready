@@ -1,3 +1,10 @@
+## [2.22.1](https://github.com/ambient-code/agentready/compare/v2.22.0...v2.22.1) (2026-01-15)
+
+
+### Bug Fixes
+
+* **assessors:** FileSizeLimitsAssessor now respects .gitignore ([#248](https://github.com/ambient-code/agentready/issues/248)) ([eaaecc2](https://github.com/ambient-code/agentready/commit/eaaecc264683c612d6c0fb65b00dc3e22d394aa1)), closes [#245](https://github.com/ambient-code/agentready/issues/245)
+
 # [2.22.0](https://github.com/ambient-code/agentready/compare/v2.21.0...v2.22.0) (2025-12-16)
 
 
