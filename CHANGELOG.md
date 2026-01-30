@@ -1,3 +1,10 @@
+## [2.24.1](https://github.com/ambient-code/agentready/compare/v2.24.0...v2.24.1) (2026-01-30)
+
+
+### Bug Fixes
+
+* Correct pre-commit template path in PrecommitHooksFixer ([#269](https://github.com/ambient-code/agentready/issues/269)) ([c42a3c9](https://github.com/ambient-code/agentready/commit/c42a3c991bb31f994d75ced44d53e4c37cf7a8bc))
+
 # [2.24.0](https://github.com/ambient-code/agentready/compare/v2.23.0...v2.24.0) (2026-01-30)
 
 
