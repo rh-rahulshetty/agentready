@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-01-15T05:52:29.319076Z",
-  "total_repositories": 3,
+  "generated_at": "2026-02-04T17:32:39.803074Z",
+  "total_repositories": 5,
   "overall": [
     {
       "repo": "ambient-code/agentready",
@@ -59,6 +59,31 @@
       }
     },
     {
+      "repo": "jeremyeder/reference",
+      "org": "jeremyeder",
+      "name": "reference",
+      "score": 55.8,
+      "tier": "Bronze",
+      "language": "Unknown",
+      "size": "Unknown",
+      "last_updated": "2026-01-15",
+      "url": "https://github.com/jeremyeder/reference",
+      "agentready_version": "2.22.0",
+      "research_version": "1.0.1",
+      "history": [
+        {
+          "date": "2026-01-15",
+          "score": 55.8,
+          "agentready_version": "2.22.0",
+          "research_version": "1.0.1"
+        }
+      ],
+      "rank": 3,
+      "lang_rank": {
+        "Unknown": 3
+      }
+    },
+    {
       "repo": "quay/quay",
       "org": "quay",
       "name": "quay",
@@ -78,9 +103,34 @@
           "research_version": "1.0.0"
         }
       ],
-      "rank": 3,
+      "rank": 4,
       "lang_rank": {
-        "Unknown": 3
+        "Unknown": 4
+      }
+    },
+    {
+      "repo": "dgutride/odh-dashboard",
+      "org": "dgutride",
+      "name": "odh-dashboard",
+      "score": 42.8,
+      "tier": "Bronze",
+      "language": "Unknown",
+      "size": "Unknown",
+      "last_updated": "2026-01-28",
+      "url": "git@github.com:dgutride/odh-dashboard.git",
+      "agentready_version": "2.23.0",
+      "research_version": "1.0.1",
+      "history": [
+        {
+          "date": "2026-01-28",
+          "score": 42.8,
+          "agentready_version": "2.23.0",
+          "research_version": "1.0.1"
+        }
+      ],
+      "rank": 5,
+      "lang_rank": {
+        "Unknown": 5
       }
     }
   ],
@@ -143,6 +193,31 @@
         }
       },
       {
+        "repo": "jeremyeder/reference",
+        "org": "jeremyeder",
+        "name": "reference",
+        "score": 55.8,
+        "tier": "Bronze",
+        "language": "Unknown",
+        "size": "Unknown",
+        "last_updated": "2026-01-15",
+        "url": "https://github.com/jeremyeder/reference",
+        "agentready_version": "2.22.0",
+        "research_version": "1.0.1",
+        "history": [
+          {
+            "date": "2026-01-15",
+            "score": 55.8,
+            "agentready_version": "2.22.0",
+            "research_version": "1.0.1"
+          }
+        ],
+        "rank": 3,
+        "lang_rank": {
+          "Unknown": 3
+        }
+      },
+      {
         "repo": "quay/quay",
         "org": "quay",
         "name": "quay",
@@ -162,9 +237,34 @@
             "research_version": "1.0.0"
           }
         ],
-        "rank": 3,
+        "rank": 4,
         "lang_rank": {
-          "Unknown": 3
+          "Unknown": 4
+        }
+      },
+      {
+        "repo": "dgutride/odh-dashboard",
+        "org": "dgutride",
+        "name": "odh-dashboard",
+        "score": 42.8,
+        "tier": "Bronze",
+        "language": "Unknown",
+        "size": "Unknown",
+        "last_updated": "2026-01-28",
+        "url": "git@github.com:dgutride/odh-dashboard.git",
+        "agentready_version": "2.23.0",
+        "research_version": "1.0.1",
+        "history": [
+          {
+            "date": "2026-01-28",
+            "score": 42.8,
+            "agentready_version": "2.23.0",
+            "research_version": "1.0.1"
+          }
+        ],
+        "rank": 5,
+        "lang_rank": {
+          "Unknown": 5
         }
       }
     ]
@@ -228,6 +328,31 @@
         }
       },
       {
+        "repo": "jeremyeder/reference",
+        "org": "jeremyeder",
+        "name": "reference",
+        "score": 55.8,
+        "tier": "Bronze",
+        "language": "Unknown",
+        "size": "Unknown",
+        "last_updated": "2026-01-15",
+        "url": "https://github.com/jeremyeder/reference",
+        "agentready_version": "2.22.0",
+        "research_version": "1.0.1",
+        "history": [
+          {
+            "date": "2026-01-15",
+            "score": 55.8,
+            "agentready_version": "2.22.0",
+            "research_version": "1.0.1"
+          }
+        ],
+        "rank": 3,
+        "lang_rank": {
+          "Unknown": 3
+        }
+      },
+      {
         "repo": "quay/quay",
         "org": "quay",
         "name": "quay",
@@ -247,9 +372,34 @@
             "research_version": "1.0.0"
           }
         ],
-        "rank": 3,
+        "rank": 4,
         "lang_rank": {
-          "Unknown": 3
+          "Unknown": 4
+        }
+      },
+      {
+        "repo": "dgutride/odh-dashboard",
+        "org": "dgutride",
+        "name": "odh-dashboard",
+        "score": 42.8,
+        "tier": "Bronze",
+        "language": "Unknown",
+        "size": "Unknown",
+        "last_updated": "2026-01-28",
+        "url": "git@github.com:dgutride/odh-dashboard.git",
+        "agentready_version": "2.23.0",
+        "research_version": "1.0.1",
+        "history": [
+          {
+            "date": "2026-01-28",
+            "score": 42.8,
+            "agentready_version": "2.23.0",
+            "research_version": "1.0.1"
+          }
+        ],
+        "rank": 5,
+        "lang_rank": {
+          "Unknown": 5
         }
       }
     ]
