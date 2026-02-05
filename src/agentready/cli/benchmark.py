@@ -36,7 +36,7 @@ from ..services.harbor.comparer import compare_assessor_impact
 @click.option(
     "--model",
     type=click.Choice(list(ALLOWED_MODELS)),
-    default="claude-haiku-4-5",
+    default="anthropic/claude-haiku-4-5",
     help="Model for evaluation",
 )
 @click.option("--verbose", "-v", is_flag=True, help="Enable verbose output")
@@ -148,9 +148,10 @@ def _run_tbench(repo_path, subset, agent, model, verbose, timeout, output_dir, s
         api_key = os.environ.get("CURSOR_API_KEY", "")
 
     if not api_key:
+        key_name = "ANTHROPIC_API_KEY" if agent == "claude-code" else "CURSOR_API_KEY"
         click.echo(
-            "Error: ANTHROPIC_API_KEY environment variable not set.\n"
-            "Set it with: export ANTHROPIC_API_KEY=your-key-here",
+            f"Error: {key_name} environment variable not set.\n"
+            f"Set it with: export {key_name}=your-key-here",
             err=True,
         )
         raise click.Abort()
