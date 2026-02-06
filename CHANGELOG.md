@@ -1,3 +1,10 @@
+## [2.25.1](https://github.com/ambient-code/agentready/compare/v2.25.0...v2.25.1) (2026-02-06)
+
+
+### Bug Fixes
+
+* **ci:** add permissions for leaderboard PR comment posting ([#276](https://github.com/ambient-code/agentready/issues/276)) ([33252e4](https://github.com/ambient-code/agentready/commit/33252e4653311967fafac546e989b8bdb0618234))
+
 # [2.25.0](https://github.com/ambient-code/agentready/compare/v2.24.1...v2.25.0) (2026-02-04)
 
 
