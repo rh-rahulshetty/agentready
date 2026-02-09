@@ -1,3 +1,11 @@
+# [2.27.0](https://github.com/ambient-code/agentready/compare/v2.26.0...v2.27.0) (2026-02-09)
+
+
+### Features
+
+* add Red-Hat-AI-Innovation-Team/sdg_hub to leaderboard ([#279](https://github.com/ambient-code/agentready/issues/279)) ([5b71392](https://github.com/ambient-code/agentready/commit/5b71392edaa60aadd9983777b5ff7df3fa507d49))
+* **submit:** add --gh flag for gh CLI-based submission ([#278](https://github.com/ambient-code/agentready/issues/278)) ([48bb624](https://github.com/ambient-code/agentready/commit/48bb624b665a2f4c29b610b764dee763358feb04))
+
 # [2.26.0](https://github.com/ambient-code/agentready/compare/v2.25.2...v2.26.0) (2026-02-09)
 
 
