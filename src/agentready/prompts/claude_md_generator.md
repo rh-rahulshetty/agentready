@@ -99,7 +99,7 @@ If it does not apply to every task, remove it.
 \`\`\`
 ## Best Practices
 
-- Before making any programming changes, ensure you fully understand both the control flow and data flow of the code.
-- After implementing a fix, create a temporary test that verifies both successful execution and any relevant data validation related to the problem.
-- Run code or code snippets as needed to deepen your understanding of how the code behaves before making changes.
+- Understand control and data flow before making changes.
+- Run code snippets to clarify code behavior as needed.
+- Use available tools to explore and understand the code always.
 \`\`\`
